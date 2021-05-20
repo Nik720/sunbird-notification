@@ -1,0 +1,21 @@
+<div class="sb-notification-list p-8" (click)="notificationClickHandler($event)">
+  <div class="sb-notification-list-header d-flex flex-ai-center flex-jc-space-between">
+    <div class="notification-info d-flex flex-ai-center mb-8">
+      <div class="status" *ngIf="(notification?.status === NotificationStatus.UNREAD)"></div>
+      <div class="date ml-8">{{notification?.createdOn | date:'E, d MMMM h:mm'}}</div>
+    </div>
+    <div class="delete-icon" (click)="notificationDeleteHandler($event);$event.stopPropagation()">
+      <img class="Delete-gray" src="assets/common-consumption/images/Delete-gray.svg" alt="" alt="delete" width="14px">
+      <img class="Delete-red" src="assets/common-consumption/images/Delete-red.svg" alt="" alt="delete" width="14px">
+    </div>
+  </div>
+  <div class="sb-notification-data d-flex flex-ai-center">
+    <div class="logo" *ngIf="notification?.data?.actionData?.thumbnail">
+      <img [src]="notification?.data?.actionData?.thumbnail" width="20px">
+    </div>
+    <div class="ml-12 notification-content">
+      <div class="title" *ngIf="notification?.data?.actionData?.title" [ngClass]="{'active': notification?.status === NotificationStatus.UNREAD}">{{notification?.data?.actionData?.title}}</div>
+      <div class="sub-title py-8" *ngIf="notification?.data?.actionData?.description">{{notification?.data?.actionData?.description}}</div>
+    </div>
+  </div>
+</div>
