@@ -1,6 +1,6 @@
-import { NotificationData, NotificationFeedEntry, NotificationStatus } from "../models";
+import { Notification, NotificationFeedEntry, NotificationStatus } from "../models";
 
-export const notificationData: NotificationFeedEntry<NotificationData> = {
+export const notificationData: NotificationFeedEntry<Notification> = {
   data: {
     actionData: {
       actionType: 'contentURL',

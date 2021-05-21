@@ -35,7 +35,7 @@ export interface NotificationFeedEntry<T = any> {
     data: T;
 }
 
-export interface NotificationData {
+export interface Notification {
     id?: string|number;
     type?: number;
     displayTime?: any;
@@ -55,12 +55,12 @@ export interface NotificationData {
     }
 }
 
-export interface EventNotificationData {
+export interface EventNotification {
     event: any;
-    data: NotificationFeedEntry<NotificationData|any>
+    data: NotificationFeedEntry<Notification|any>
 }
 
-export interface EventNotificationListData {
+export interface EventNotificationList {
     event: any;
-    data: NotificationFeedEntry<NotificationData|any>[]
+    data: NotificationFeedEntry<Notification|any>[]
 }

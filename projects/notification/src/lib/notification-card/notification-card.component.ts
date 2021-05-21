@@ -1,6 +1,6 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { notificationData } from './notification-card-data';
-import { NotificationData, NotificationFeedEntry, NotificationStatus } from '../models';
+import { Notification, NotificationFeedEntry, NotificationStatus } from '../models';
 import { AbstractNotificationService } from '../abstract-notification.service';
 
 @Component({
@@ -8,14 +8,20 @@ import { AbstractNotificationService } from '../abstract-notification.service';
   templateUrl: './notification-card.component.html',
   styleUrls: ['./notification-card.component.scss']
 })
-export class NotificationCardComponent {
+export class NotificationCardComponent implements OnChanges {
 
-  @Input() notification: NotificationFeedEntry<NotificationData|any> = notificationData;
+  @Input() notification: NotificationFeedEntry<Notification|any> = notificationData;
   NotificationStatus = NotificationStatus;
 
   constructor(
     @Inject('NOTIFICATION_SERVICE') protected notificationService: AbstractNotificationService
   ) { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.notification) {
+      this.notification = changes.notification.currentValue;
+    }
+  }
 
   notificationClickHandler(event) {
     const eventData = {

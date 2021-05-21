@@ -1,6 +1,6 @@
-import { NotificationViewConfig, NotificationData, NotificationFeedEntry, NotificationStatus } from "./models";
+import { NotificationViewConfig, Notification, NotificationFeedEntry, NotificationStatus } from "./models";
 
-export const notificationList: NotificationFeedEntry<NotificationData>[] = [
+export const notificationList: NotificationFeedEntry<Notification>[] = [
   {
     data: {
       actionData: {

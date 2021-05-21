@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
-import { NotificationViewConfig, NotificationFeedEntry, NotificationData } from './models';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { NotificationViewConfig, NotificationFeedEntry, Notification } from './models';
 import { AbstractNotificationService } from './abstract-notification.service';
 import { notificationViewConfig } from './notification-data';
 
@@ -8,9 +8,9 @@ import { notificationViewConfig } from './notification-data';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })
-export class NotificationComponent implements OnInit {
+export class NotificationComponent implements OnInit, OnChanges {
 
-  @Input() notificationList: NotificationFeedEntry<NotificationData|any>[] = [];
+  @Input() notificationList: NotificationFeedEntry<Notification|any>[] = [];
   @Input() inAppNotificationConfig: NotificationViewConfig = notificationViewConfig;
   @Output() showMore: EventEmitter<any> = new EventEmitter();
   @Output() showLess: EventEmitter<any> = new EventEmitter();
@@ -22,6 +22,16 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit() {
     this.displayItemCount = this.inAppNotificationConfig.minNotificationViewCount;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.notificationList) {
+      this.notificationList = changes.notificationList.currentValue;
+    }
+
+    if (changes.inAppNotificationConfig) {
+      this.inAppNotificationConfig = changes.inAppNotificationConfig.currentValue;
+    }
   }
 
   clearAllNotifications(event) {
