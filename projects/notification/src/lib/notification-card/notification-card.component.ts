@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { notificationData } from './notification-card-data';
 import { Notification, NotificationFeedEntry, NotificationStatus } from '../models';
-import { NotificationService } from '../notification.service';
+import { SbNotificationService } from '../notification.service';
 
 @Component({
   selector: 'sb-notification-card',
@@ -14,7 +14,7 @@ export class NotificationCardComponent implements OnChanges {
   NotificationStatus = NotificationStatus;
 
   constructor(
-    @Inject('NOTIFICATION_SERVICE') protected notificationService: NotificationService
+    @Inject('NOTIFICATION_SERVICE') protected sbNotificationService: SbNotificationService
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -28,7 +28,7 @@ export class NotificationCardComponent implements OnChanges {
       event,
       data: this.notification
     };
-    this.notificationService.handleNotificationClick(eventData);
+    this.sbNotificationService.handleNotificationClick(eventData);
   }
 
   notificationDeleteHandler(event) {
@@ -36,7 +36,7 @@ export class NotificationCardComponent implements OnChanges {
       event,
       data: this.notification
     };
-    this.notificationService.deleteNotification(eventData);
+    this.sbNotificationService.deleteNotification(eventData);
   }
 
 }

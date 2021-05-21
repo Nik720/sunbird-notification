@@ -1,6 +1,6 @@
 import { EventNotification, EventNotificationList, Notification, NotificationFeedEntry } from "./models";
 
-export interface NotificationService {
+export interface SbNotificationService {
 
   fetchNotificationList(): Promise<NotificationFeedEntry<Notification|any>[]>;
   

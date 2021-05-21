@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NotificationViewConfig, NotificationFeedEntry, Notification } from './models';
-import { NotificationService } from './notification.service';
+import { SbNotificationService } from './notification.service';
 import { notificationViewConfig } from './notification-data';
 
 @Component({
@@ -17,7 +17,7 @@ export class NotificationComponent implements OnInit, OnChanges {
   displayItemCount: number;
 
   constructor(
-    @Inject('NOTIFICATION_SERVICE') protected notificationService: NotificationService
+    @Inject('NOTIFICATION_SERVICE') protected sbNotificationService: SbNotificationService
   ) { }
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class NotificationComponent implements OnInit, OnChanges {
       event,
       data: this.notificationList
     };
-    this.notificationService.clearAllNotifications(eventData);
+    this.sbNotificationService.clearAllNotifications(eventData);
   }
 
   onShowMore() {
