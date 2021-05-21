@@ -1,7 +1,7 @@
 import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { notificationData } from './notification-card-data';
 import { Notification, NotificationFeedEntry, NotificationStatus } from '../models';
-import { AbstractNotificationService } from '../abstract-notification.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'sb-notification-card',
@@ -14,7 +14,7 @@ export class NotificationCardComponent implements OnChanges {
   NotificationStatus = NotificationStatus;
 
   constructor(
-    @Inject('NOTIFICATION_SERVICE') protected notificationService: AbstractNotificationService
+    @Inject('NOTIFICATION_SERVICE') protected notificationService: NotificationService
   ) { }
 
   ngOnChanges(changes: SimpleChanges) {

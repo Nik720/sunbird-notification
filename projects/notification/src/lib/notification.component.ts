@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { NotificationViewConfig, NotificationFeedEntry, Notification } from './models';
-import { AbstractNotificationService } from './abstract-notification.service';
+import { NotificationService } from './notification.service';
 import { notificationViewConfig } from './notification-data';
 
 @Component({
@@ -17,7 +17,7 @@ export class NotificationComponent implements OnInit, OnChanges {
   displayItemCount: number;
 
   constructor(
-    @Inject('NOTIFICATION_SERVICE') protected notificationService: AbstractNotificationService
+    @Inject('NOTIFICATION_SERVICE') protected notificationService: NotificationService
   ) { }
 
   ngOnInit() {
