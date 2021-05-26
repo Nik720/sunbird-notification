@@ -25,12 +25,12 @@ export interface NotificationViewConfig {
 export interface NotificationFeedEntry<T = any> {
     id: string|number;
     userId?: string|number;
-    category?: NotificationFeedCategory | string;
+    category?: NotificationFeedCategory | any;
     priority?: number;
     createdBy?: string;
     createdOn?: any;
     channel?: string;
-    status: NotificationStatus;
+    status: NotificationStatus | any;
     expireOn?: any;
     data: T;
 }
@@ -57,10 +57,5 @@ export interface Notification {
 
 export interface EventNotification {
     event: any;
-    data: NotificationFeedEntry<Notification|any>
-}
-
-export interface EventNotificationList {
-    event: any;
-    data: NotificationFeedEntry<Notification|any>[]
+    data: NotificationFeedEntry<Notification>[] | NotificationFeedEntry<Notification> | any;
 }

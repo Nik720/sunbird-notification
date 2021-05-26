@@ -1,4 +1,4 @@
-import { EventNotification, EventNotificationList, Notification, NotificationFeedEntry } from "./models";
+import { EventNotification, Notification, NotificationFeedEntry } from "./models";
 
 export interface SbNotificationService {
 
@@ -8,6 +8,6 @@ export interface SbNotificationService {
   
   deleteNotification(notificationData: EventNotification): Promise<boolean>;
   
-  clearAllNotifications(notificationListData: EventNotificationList): Promise<boolean>;
+  clearAllNotifications(notificationListData: EventNotification): Promise<boolean>;
 
 }

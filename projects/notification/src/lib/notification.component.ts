@@ -12,12 +12,17 @@ export class NotificationComponent implements OnInit, OnChanges {
 
   @Input() notificationList: NotificationFeedEntry<Notification|any>[] = [];
   @Input() inAppNotificationConfig: NotificationViewConfig = notificationViewConfig;
+  @Input() hideDeleteOption: boolean;
+
+  @Output() notificationClick: EventEmitter<any> = new EventEmitter();
+  @Output() deleteNotificationClick: EventEmitter<any> = new EventEmitter();
+  @Output() clearAllClick: EventEmitter<any> = new EventEmitter();
   @Output() showMore: EventEmitter<any> = new EventEmitter();
   @Output() showLess: EventEmitter<any> = new EventEmitter();
   displayItemCount: number;
 
   constructor(
-    @Inject('NOTIFICATION_SERVICE') protected sbNotificationService: SbNotificationService
+    @Inject('SB_NOTIFICATION_SERVICE') protected sbNotificationService: SbNotificationService
   ) { }
 
   ngOnInit() {
@@ -34,11 +39,20 @@ export class NotificationComponent implements OnInit, OnChanges {
     }
   }
 
+  notificationClickHandler(eventData) {
+    this.notificationClick.emit(eventData);
+  }
+
+  notificationDeleteHandler(eventData) {
+    this.deleteNotificationClick.emit(eventData);
+  }
+
   clearAllNotifications(event) {
     const eventData = {
       event,
       data: this.notificationList
     };
+    this.clearAllClick.emit(eventData);
     this.sbNotificationService.clearAllNotifications(eventData);
   }
 

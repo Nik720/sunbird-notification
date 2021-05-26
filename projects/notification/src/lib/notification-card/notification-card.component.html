@@ -4,7 +4,7 @@
       <div class="status" *ngIf="(notification?.status === NotificationStatus.UNREAD)"></div>
       <div class="date ml-8">{{notification?.createdOn | date:'E, d MMMM h:mm'}}</div>
     </div>
-    <div class="delete-icon" (click)="notificationDeleteHandler($event);$event.stopPropagation()">
+    <div class="delete-icon" *ngIf="!hideDeleteOption" (click)="notificationDeleteHandler($event);$event.stopPropagation()">
       <img class="Delete-gray" src="assets/common-consumption/images/Delete-gray.svg" alt="" alt="delete" width="14px">
       <img class="Delete-red" src="assets/common-consumption/images/Delete-red.svg" alt="" alt="delete" width="14px">
     </div>

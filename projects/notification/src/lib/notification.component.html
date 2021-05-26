@@ -8,7 +8,12 @@
   </div>
   <div class="sb-notification-list-items">
     <div *ngFor="let notification of notificationList | slice:0:displayItemCount; let i=index" >
-      <sb-notification-card [notification]="notification"></sb-notification-card>
+      <sb-notification-card 
+        [notification]="notification"
+        [hideDeleteOption]="hideDeleteOption"
+        (notificationClick)="notificationClickHandler($event)"
+        (deleteNotificationClick)="notificationDeleteHandler($event)">
+      </sb-notification-card>
     </div>
   </div>
   <ng-container *ngIf="inAppNotificationConfig?.minNotificationViewCount < this.notificationList?.length">

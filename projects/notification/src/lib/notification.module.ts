@@ -21,7 +21,7 @@ export class SbNotificationModule {
     return {
       ngModule: sbNotificationService,
       providers: [
-        {provide: 'NOTIFICATION_SERVICE', useClass: sbNotificationService}
+        {provide: 'SB_NOTIFICATION_SERVICE', useClass: sbNotificationService}
       ]
     };
   }
