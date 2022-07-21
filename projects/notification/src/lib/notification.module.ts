@@ -17,9 +17,9 @@ import { NotificationCardComponent } from './notification-card/notification-card
   ]
 })
 export class SbNotificationModule {
-  static forRoot(sbNotificationService): ModuleWithProviders {
+  static forRoot(sbNotificationService): ModuleWithProviders<any> {
     return {
-      ngModule: sbNotificationService,
+      ngModule: SbNotificationModule,
       providers: [
         {provide: 'SB_NOTIFICATION_SERVICE', useClass: sbNotificationService}
       ]
